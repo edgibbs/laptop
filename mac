@@ -119,7 +119,7 @@ cask "gpg-suite"
 
 # Docker
 cask "docker"
-cask "google-chrone"
+cask "google-chrome"
 
 EOF
 
