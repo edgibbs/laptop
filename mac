@@ -11,21 +11,21 @@ fancy_echo() {
   printf "\\n$fmt\\n" "$@"
 }
 
-append_to_zshrc() {
-  local text="$1" zshrc
+append_to_bashrc() {
+  local text="$1" bashrc
   local skip_new_line="${2:-0}"
 
-  if [ -w "$HOME/.zshrc.local" ]; then
-    zshrc="$HOME/.zshrc.local"
+  if [ -w "$HOME/.bashrc.local" ]; then
+    bashrc="$HOME/.bashrc.local"
   else
-    zshrc="$HOME/.zshrc"
+    bashrc="$HOME/.bashrc"
   fi
 
-  if ! grep -Fqs "$text" "$zshrc"; then
+  if ! grep -Fqs "$text" "$bashrc"; then
     if [ "$skip_new_line" -eq 1 ]; then
-      printf "%s\\n" "$text" >> "$zshrc"
+      printf "%s\\n" "$text" >> "$bashrc"
     else
-      printf "\\n%s\\n" "$text" >> "$zshrc"
+      printf "\\n%s\\n" "$text" >> "$bashrc"
     fi
   fi
 }
@@ -39,12 +39,12 @@ if [ ! -d "$HOME/.bin/" ]; then
   mkdir "$HOME/.bin"
 fi
 
-if [ ! -f "$HOME/.zshrc" ]; then
-  touch "$HOME/.zshrc"
+if [ ! -f "$HOME/.bashrc" ]; then
+  touch "$HOME/.bashrc"
 fi
 
 # shellcheck disable=SC2016
-append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
+append_to_bashrc 'export PATH="$HOME/.bin:$PATH"'
 
 HOMEBREW_PREFIX="/usr/local"
 
@@ -57,29 +57,6 @@ else
   sudo chflags norestricted "$HOMEBREW_PREFIX"
   sudo chown -R "$LOGNAME:admin" "$HOMEBREW_PREFIX"
 fi
-
-update_shell() {
-  local shell_path;
-  shell_path="$(command -v zsh)"
-
-  fancy_echo "Changing your shell to zsh ..."
-  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
-    fancy_echo "Adding '$shell_path' to /etc/shells"
-    sudo sh -c "echo $shell_path >> /etc/shells"
-  fi
-  sudo chsh -s "$shell_path" "$USER"
-}
-
-case "$SHELL" in
-  */zsh)
-    if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
-      update_shell
-    fi
-    ;;
-  *)
-    update_shell
-    ;;
-esac
 
 gem_install_or_update() {
   if gem list "$1" --installed > /dev/null; then
@@ -94,10 +71,10 @@ if ! command -v brew >/dev/null; then
     curl -fsS \
       'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
-    append_to_zshrc '# recommended by brew doctor'
+    append_to_bashrc '# recommended by brew doctor'
 
     # shellcheck disable=SC2016
-    append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
+    append_to_bashrc 'export PATH="/usr/local/bin:$PATH"' 1
 
     export PATH="/usr/local/bin:$PATH"
 fi
@@ -126,7 +103,6 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "watchman"
-brew "zsh"
 
 # Heroku
 brew "heroku/brew/heroku"
@@ -156,7 +132,7 @@ brew link --force heroku
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
-  append_to_zshrc "source $HOME/.asdf/asdf.sh" 1
+  append_to_bashrc "source $HOME/.asdf/asdf.sh" 1
 fi
 
 alias install_asdf_plugin=add_or_update_asdf_plugin
