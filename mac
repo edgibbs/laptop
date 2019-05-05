@@ -91,7 +91,7 @@ tap "thoughtbot/formulae"
 tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
 tap "caskroom/cask"
-tap "heroku/brew"
+tap "nexeck/homebrew-tmuxinator"
 
 # Unix
 brew "universal-ctags", args: ["HEAD"]
@@ -103,10 +103,7 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "watchman"
-
-# Heroku
-brew "heroku/brew/heroku"
-brew "parity"
+brew "tmuxinator"
 
 # GitHub
 brew "hub"
@@ -120,14 +117,10 @@ brew "coreutils"
 brew "yarn"
 cask "gpg-suite"
 
-# Databases
-brew "postgres", restart_service: :changed
-brew "redis", restart_service: :changed
-EOF
+# Docker
+cask "docker"
 
-fancy_echo "Update heroku binary ..."
-brew unlink heroku
-brew link --force heroku
+EOF
 
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then
