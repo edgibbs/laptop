@@ -145,6 +145,7 @@ add_or_update_asdf_plugin() {
 source "$HOME/.asdf/asdf.sh"
 add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
 add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
+add_or_update_asdf_plugin "python" "https://github.com/danhper/asdf-python.git"
 
 install_asdf_language() {
   local language="$1"
@@ -166,6 +167,10 @@ bundle config --global jobs $((number_of_cores - 1))
 fancy_echo "Installing latest Node ..."
 bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 install_asdf_language "nodejs"
+
+fancy_echo "Installing latest python ..."
+install_asdf_language "python"
+
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
