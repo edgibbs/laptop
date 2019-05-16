@@ -120,6 +120,8 @@ cask "gpg-suite"
 # Docker
 cask "docker"
 cask "google-chrome"
+cask "cleanmymac"
+cask "paste"
 
 EOF
 
