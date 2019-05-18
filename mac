@@ -173,6 +173,9 @@ install_asdf_language "nodejs"
 fancy_echo "Installing latest python ..."
 install_asdf_language "python"
 
+# Setup bash-it
+git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+~/.bash_it/install.sh --no-modify-config
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
