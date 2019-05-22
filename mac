@@ -104,6 +104,10 @@ brew "tmux"
 brew "vim"
 brew "watchman"
 brew "tmuxinator"
+brew "readline"
+brew "sqlite3"
+brew "xz"
+brew "zlib"
 
 # GitHub
 brew "hub"
