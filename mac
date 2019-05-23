@@ -93,7 +93,6 @@ tap "universal-ctags/universal-ctags"
 tap "caskroom/cask"
 tap "nexeck/homebrew-tmuxinator"
 
-# Unix
 brew "universal-ctags", args: ["HEAD"]
 brew "git"
 brew "openssl"
@@ -108,24 +107,30 @@ brew "readline"
 brew "sqlite3"
 brew "xz"
 brew "zlib"
-
-# GitHub
+brew "elixir"
 brew "hub"
-
-# Image manipulation
 brew "imagemagick"
-
-# Programming language prerequisites and package managers
 brew "libyaml" # should come after openssl
 brew "coreutils"
 brew "yarn"
-cask "gpg-suite"
 
-# Docker
+cask "gpg-suite"
 cask "docker"
 cask "google-chrome"
 cask "cleanmymac"
 cask "paste"
+cask "skitch"
+cask "1password"
+cask "fantastical"
+cask "airmail"
+cask "firefox"
+cask "karabiner-elements"
+cask "keycastr"
+cask "kindle"
+cask "omnifocus"
+cask "sizeup"
+cask "slack"
+cask "spamsieve"
 
 EOF
 
