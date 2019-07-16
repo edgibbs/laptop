@@ -186,6 +186,10 @@ install_asdf_language "python"
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh --no-modify-config
 
+# Install dotfiles with rcm
+git clone --depth=1 https://github.com/edgibbs/dotfiles.git ~/.dotfiles
+rcup -v
+
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
   # shellcheck disable=SC1090
