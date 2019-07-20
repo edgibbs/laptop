@@ -182,13 +182,13 @@ fancy_echo "Installing latest python ..."
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 install_asdf_language "python"
 
+# Install dotfiles with rcm
+git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
+rcup -v
+
 # Setup bash-it
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh --no-modify-config
-
-# Install dotfiles with rcm
-git clone --depth=1 https://github.com/edgibbs/dotfiles.git ~/.dotfiles
-rcup -v
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."

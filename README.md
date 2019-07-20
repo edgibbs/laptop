@@ -187,6 +187,12 @@ can be used in your `~/.laptop.local`.
 See the [wiki](https://github.com/thoughtbot/laptop/wiki)
 for more customization examples.
 
+Personal Notes
+-------------
+
+In order to support downloading some private dotfiles ssh keys and config should be added
+manually.  Keys are currently stored in a seperate password manager.
+
 Contributing
 ------------
 
