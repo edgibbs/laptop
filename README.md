@@ -40,7 +40,7 @@ less mac
 Execute the downloaded script:
 
 ```sh
-sh mac 2>&1 | tee ~/laptop.log
+sh mac 2>&1 | tee /tmp/laptop.log
 ```
 
 Optionally, review the log:
