@@ -113,6 +113,9 @@ brew "imagemagick"
 brew "libyaml" # should come after openssl
 brew "coreutils"
 brew "yarn"
+brew "rbenv"
+brew "nvm"
+brew "pyenv"
 
 cask "gpg-suite"
 cask "docker"
@@ -133,60 +136,26 @@ cask "spamsieve"
 
 EOF
 
-fancy_echo "Configuring asdf version manager ..."
-if [ ! -d "$HOME/.asdf" ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.0
-  append_to_bashrc "source $HOME/.asdf/asdf.sh" 1
-fi
-
-alias install_asdf_plugin=add_or_update_asdf_plugin
-add_or_update_asdf_plugin() {
-  local name="$1"
-  local url="$2"
-
-  if ! asdf plugin-list | grep -Fq "$name"; then
-    asdf plugin-add "$name" "$url"
-  else
-    asdf plugin-update "$name"
-  fi
-}
-
-# shellcheck disable=SC1090
-source "$HOME/.asdf/asdf.sh"
-add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
-add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
-add_or_update_asdf_plugin "python" "https://github.com/danhper/asdf-python.git"
-
-install_asdf_language() {
-  local language="$1"
-  local version
-  version="$(asdf list-all "$language" | grep -v "[a-z]" | tail -1)"
-
-  if ! asdf list "$language" | grep -Fq "$version"; then
-    asdf install "$language" "$version"
-    asdf global "$language" "$version"
-  fi
-}
-
+# Install ruby
 fancy_echo "Installing latest Ruby ..."
-install_asdf_language "ruby"
+rbenv init
+rbenv install latest
 gem update --system
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
 fancy_echo "Installing latest Node ..."
-bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
-install_asdf_language "nodejs"
+mkdir ~/.nvm
+nvm install node
 
 fancy_echo "Installing latest python ..."
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
-install_asdf_language "python"
+pyenv install 3.7.4
 
-# Install dotfiles with rcm
+fancy_echo "Installing dotfiles ..."
 git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
 rcup -v
 
-# Setup bash-it
+fancy_echo "Setting up bash-it ..."
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ~/.bash_it/install.sh --no-modify-config
 
