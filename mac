@@ -138,7 +138,7 @@ EOF
 
 # Install ruby
 fancy_echo "Installing latest Ruby ..."
-echo 'eval "${rbenv init -}"' >>~/.bashrc
+echo 'eval "$(rbenv init -)"' >>~/.bashrc
 source ~/.bashrc
 rbenv init
 rbenv install 2.6.3
