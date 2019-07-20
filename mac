@@ -140,9 +140,9 @@ EOF
 fancy_echo "Installing latest Ruby ..."
 echo 'eval "$(rbenv init -)"' >>~/.bashrc
 source ~/.bashrc
-rbenv init
 rbenv install 2.6.3
-gem update --system
+rbenv global 2.6.3
+gem update
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
