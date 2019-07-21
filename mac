@@ -113,9 +113,9 @@ brew "imagemagick"
 brew "libyaml" # should come after openssl
 brew "coreutils"
 brew "tree"
+brew "nvm"
 brew "yarn"
 brew "rbenv"
-brew "nvm"
 brew "pyenv"
 
 cask "gpg-suite"
