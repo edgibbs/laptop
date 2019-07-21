@@ -155,7 +155,11 @@ fi
 if ! type "nvm" > /dev/null; then
   fancy_echo "Installing latest Node ..."
   mkdir ~/.nvm
+  echo 'export NVM_DIR=~/.nvm' >>~/.bashrc
+  source $(brew --prefix nvm)/nvm.sh
+  source ~/.bashrc
   nvm install node
+  nvm use default
 fi
 
 fancy_echo "Installing latest python ..."
