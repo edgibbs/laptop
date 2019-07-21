@@ -156,7 +156,7 @@ if ! type -P "nvm" &>/dev/null; then
   fancy_echo "Installing latest Node ..."
   mkdir ~/.nvm
   echo 'export NVM_DIR=~/.nvm' >>~/.bashrc
-  echo 'source $(brew --prefix nvm)/nvm.sh'
+  echo 'source $(brew --prefix nvm)/nvm.sh' >>~/.bashrc
   source ~/.bashrc
   nvm install node
   nvm use default
