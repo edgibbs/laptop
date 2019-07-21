@@ -113,7 +113,6 @@ brew "imagemagick"
 brew "libyaml" # should come after openssl
 brew "coreutils"
 brew "tree"
-brew "nvm"
 brew "yarn"
 brew "rbenv"
 brew "pyenv"
@@ -154,11 +153,8 @@ fi
 
 if ! type -P "nvm" &>/dev/null; then
   fancy_echo "Installing latest Node ..."
-  mkdir ~/.nvm
-  echo 'export NVM_DIR=~/.nvm' >>~/.bashrc
-  echo 'source $(brew --prefix nvm)/nvm.sh' >>~/.bashrc
-  source ~/.bashrc
-  nvm install node 10.16.0
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+  nvm install node
   nvm use default
 fi
 
