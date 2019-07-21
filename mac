@@ -137,18 +137,22 @@ cask "spamsieve"
 EOF
 
 # Install ruby
-fancy_echo "Installing latest Ruby ..."
-echo 'eval "$(rbenv init -)"' >>~/.bashrc
-source ~/.bashrc
-rbenv install 2.6.3
-rbenv global 2.6.3
-gem update
-number_of_cores=$(sysctl -n hw.ncpu)
-bundle config --global jobs $((number_of_cores - 1))
+if ! type "rbenv" > /dev/null; then
+  fancy_echo "Installing latest Ruby ..."
+  echo 'eval "$(rbenv init -)"' >>~/.bashrc
+  source ~/.bashrc
+  rbenv install 2.6.3
+  rbenv global 2.6.3
+  gem update
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle config --global jobs $((number_of_cores - 1))
+fi
 
-fancy_echo "Installing latest Node ..."
-mkdir ~/.nvm
-nvm install node
+if ! type "nvm" > /dev/null; then
+  fancy_echo "Installing latest Node ..."
+  mkdir ~/.nvm
+  nvm install node
+fi
 
 fancy_echo "Installing latest python ..."
 pyenv install 3.7.4
