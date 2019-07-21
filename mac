@@ -112,6 +112,7 @@ brew "hub"
 brew "imagemagick"
 brew "libyaml" # should come after openssl
 brew "coreutils"
+brew "tree"
 brew "yarn"
 brew "rbenv"
 brew "nvm"
