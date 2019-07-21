@@ -158,8 +158,7 @@ if ! type -P "nvm" &>/dev/null; then
   echo 'export NVM_DIR=~/.nvm' >>~/.bashrc
   echo 'source $(brew --prefix nvm)/nvm.sh' >>~/.bashrc
   source ~/.bashrc
-  nvm install node || true
-  nvm install node
+  nvm install node 10.16.0
   nvm use default
 fi
 
