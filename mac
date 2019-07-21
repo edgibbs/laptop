@@ -137,6 +137,9 @@ cask "spamsieve"
 
 EOF
 
+# Setup a bunch of defaults
+defaults write com.apple.Terminal ShellExitAction 0
+
 # Install ruby
 if ! type "rbenv" > /dev/null; then
   fancy_echo "Installing latest Ruby ..."
