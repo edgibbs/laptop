@@ -141,7 +141,7 @@ EOF
 defaults write com.apple.Terminal ShellExitAction 0
 
 # Install ruby
-if [ ! type -P "rbenv" &>/dev/null]; then
+if [ ! type -P "rbenv" &>/dev/null ]; then
   fancy_echo "Installing latest Ruby ..."
   echo 'eval "$(rbenv init -)"' >>~/.bashrc
   source ~/.bashrc
