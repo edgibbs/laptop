@@ -160,8 +160,10 @@ if ! type -P "nvm" &>/dev/null; then
   nvm ls
 fi
 
-fancy_echo "Installing latest python ..."
-pyenv install 3.7.4
+if [[ $(pyenv versions) =~ "3.7.4" ]]; then
+  fancy_echo "Installing latest python ..."
+  pyenv install 3.7.4
+fi
 
 fancy_echo "Installing dotfiles ..."
 git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
