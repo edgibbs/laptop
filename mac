@@ -167,9 +167,12 @@ fancy_echo "Installing dotfiles ..."
 git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
 rcup -v
 
-fancy_echo "Setting up bash-it ..."
-git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-~/.bash_it/install.sh --no-modify-config
+if ! type -P "bash-it" &>/dev/null; then
+  fancy_echo "Setting up bash-it ..."
+  git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+  ~/.bash_it/install.sh --no-modify-config
+  source ~/.bash_profile
+fi
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
