@@ -165,9 +165,11 @@ if [[ ! $(pyenv versions) =~ "3.7.4" ]]; then
   pyenv install 3.7.4
 fi
 
-fancy_echo "Installing dotfiles ..."
-git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
-rcup -v
+if [ ! test -f "~/.dotfiles" ]; then
+  fancy_echo "Installing dotfiles ..."
+  git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
+  rcup -v
+fi
 
 if ! type -P "bash-it" &>/dev/null; then
   fancy_echo "Setting up bash-it ..."
