@@ -193,7 +193,7 @@ Personal Notes
 In order to support downloading some private dotfiles ssh keys and config should be added
 manually.  Keys are currently stored in a seperate password manager.
 
-Powerline fonts have to be downloaded and assigned in terminal, [Roboto Mono Medium for Powerline](https://github.com/powerline/fonts/blob/master/RobotoMono/Roboto%20Mono%20Medium%20for%20Powerline.ttf).
+Powerline fonts have to be downloaded and assigned in terminal, using 13pt [Roboto Mono Medium for Powerline](https://github.com/powerline/fonts/blob/master/RobotoMono/Roboto%20Mono%20Medium%20for%20Powerline.ttf).
 
 Contributing
 ------------
