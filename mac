@@ -90,7 +90,7 @@ brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
 tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
-tap "caskroom/cask"
+tap "homebrew/cask-cask"
 tap "nexeck/homebrew-tmuxinator"
 
 brew "universal-ctags", args: ["HEAD"]
