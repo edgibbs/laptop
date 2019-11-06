@@ -90,7 +90,6 @@ brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
 tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
-tap "homebrew/cask-cask"
 tap "nexeck/homebrew-tmuxinator"
 
 brew "universal-ctags", args: ["HEAD"]
@@ -176,6 +175,12 @@ if ! type -P "bash-it" &>/dev/null; then
   git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
   ~/.bash_it/install.sh --no-modify-config
   source ~/.bash_profile
+fi
+
+if [ ! test -f "$HOME/.vim/bundle"]; then
+  mkdir -p ~/.vim/autoload ~/.vim/bundle
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  # also install all the bundles including powernine
 fi
 
 if [ -f "$HOME/.laptop.local" ]; then
