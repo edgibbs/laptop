@@ -116,6 +116,7 @@ brew "yarn"
 brew "nvm"
 brew "rbenv"
 brew "pyenv"
+brew "cmatrix"
 
 cask "gpg-suite"
 cask "docker"
