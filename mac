@@ -68,8 +68,8 @@ gem_install_or_update() {
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
-    curl -fsS \
-      'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
+    /bin/bash -c \
+       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
     append_to_bashrc '# recommended by brew doctor'
 
@@ -107,7 +107,7 @@ brew "sqlite3"
 brew "xz"
 brew "zlib"
 brew "elixir"
-brew "hub"
+brew "gh"
 brew "imagemagick"
 brew "libyaml" # should come after openssl
 brew "coreutils"
@@ -118,22 +118,8 @@ brew "rbenv"
 brew "pyenv"
 brew "cmatrix"
 
-cask "gpg-suite"
-cask "docker"
-cask "google-chrome"
-cask "cleanmymac"
-cask "paste"
 cask "skitch"
-cask "1password"
-cask "fantastical"
 cask "firefox"
-cask "karabiner-elements"
-cask "keycastr"
-cask "kindle"
-cask "omnifocus"
-cask "sizeup"
-cask "slack"
-cask "spamsieve"
 
 EOF
 
@@ -145,8 +131,8 @@ if [ ! type -P "rbenv" &>/dev/null ]; then
   fancy_echo "Installing latest Ruby ..."
   echo 'eval "$(rbenv init -)"' >>~/.bashrc
   source ~/.bashrc
-  rbenv install 2.6.3
-  rbenv global 2.6.3
+  rbenv install 3.0.0
+  rbenv global 3.0.0
   gem update
   number_of_cores=$(sysctl -n hw.ncpu)
   bundle config --global jobs $((number_of_cores - 1))
@@ -165,24 +151,24 @@ if [[ ! $(pyenv versions) =~ "3.7.4" ]]; then
   pyenv install 3.7.4
 fi
 
-if [ ! test -f "~/.dotfiles" ]; then
-  fancy_echo "Installing dotfiles ..."
-  git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
-  rcup -v
-fi
+# if [ ! test -f "~/.dotfiles" ]; then
+#   fancy_echo "Installing dotfiles ..."
+#   git clone https://github.com/edgibbs/.dotfiles.git ~/.dotfiles
+#   rcup -v
+# fi
 
-if ! type -P "bash-it" &>/dev/null; then
-  fancy_echo "Setting up bash-it ..."
-  git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
-  ~/.bash_it/install.sh --no-modify-config
-  source ~/.bash_profile
-fi
+# if ! type -P "bash-it" &>/dev/null; then
+#   fancy_echo "Setting up bash-it ..."
+#   git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+#   ~/.bash_it/install.sh --no-modify-config
+#   source ~/.bash_profile
+# fi
 
-if [ ! test -f "$HOME/.vim/bundle"]; then
-  mkdir -p ~/.vim/autoload ~/.vim/bundle
-  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-  # also install all the bundles including powernine
-fi
+# if [ ! test -f "$HOME/.vim/bundle"]; then
+#   mkdir -p ~/.vim/autoload ~/.vim/bundle
+#   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+#   # also install all the bundles including powernine
+# fi
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
